@@ -44,7 +44,6 @@ func main() {
 	// 选择指定字段并创建记录
 	err = db.Select("first_name", "Age").Create(&personSelect).Error
 	if err != nil {
-		// 错误处理
 		fmt.Println("创建记录错误:", err)
 		return
 	}
