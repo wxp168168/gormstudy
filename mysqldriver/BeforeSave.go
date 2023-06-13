@@ -10,19 +10,13 @@ import (
 
 type UserBeforeSave struct {
 	ID        uint
-	Name      string
+	Name      string `gorm:"size:30"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 }
 
 /**
-我们创建了一个新的用户并调用 Save 方法保存。此时，BeforeSave 钩子会被触发并打印出相应的信息。
-接下来，我们更新了用户的名称，并再次调用 Save 方法，这将再次触发 BeforeSave 钩子
-
-BeforeSave hook is triggered
-BeforeSave hook is triggered
-
-BeforeSave|BeforeCreate|AfterSave|AfterCreate这些函数的作用类似
+以下是一个使用 Gorm 的 BeforeSave 钩子的示例，其中结构体名为 UserBeforeSave，该钩子在执行保存（插入或更新）操作之前触发
 */
 
 func (u *UserBeforeSave) BeforeSave(tx *gorm.DB) (err error) {
