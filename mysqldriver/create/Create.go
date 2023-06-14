@@ -4,9 +4,7 @@ package main
 
 import (
 	"fmt"
-
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	"gormstudy/common"
 )
 
 type Product struct {
@@ -17,16 +15,10 @@ type Product struct {
 
 func main() {
 	// 建立数据库连接
-	dsn := "root:root@tcp(localhost:3306)/gormstudy?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		// 错误处理
-		fmt.Println("数据库连接错误:", err)
-		return
-	}
+	db := common.MysqlCon()
 
 	// 迁移表格（如果尚未创建）
-	err = db.AutoMigrate(&Product{})
+	err := db.AutoMigrate(&Product{})
 	if err != nil {
 		// 错误处理
 		fmt.Println("数据库迁移错误:", err)

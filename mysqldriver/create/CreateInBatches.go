@@ -4,10 +4,8 @@ package main
 
 import (
 	"fmt"
+	"gormstudy/common"
 	"time"
-
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 )
 
 type User struct {
@@ -19,11 +17,7 @@ type User struct {
 }
 
 func main() {
-	dsn := "root:root@tcp(localhost:3306)/gormstudy?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
+	db := common.MysqlCon()
 
 	// Auto Migrate the User model
 	db.AutoMigrate(&User{})

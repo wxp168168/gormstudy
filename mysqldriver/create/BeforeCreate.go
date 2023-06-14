@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"time"
 
-	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -26,11 +25,7 @@ func (u *UserBeforeCreate) BeforeCreate(tx *gorm.DB) (err error) {
 */
 
 func main() {
-	dsn := "root:root@tcp(localhost:3306)/gormstudy?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
+	db := common.MysqlCon()
 
 	// 创建表
 	db.AutoMigrate(&UserBeforeCreate{})

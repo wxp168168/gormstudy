@@ -1,8 +1,7 @@
 package main
 
 import (
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	"gormstudy/common"
 )
 
 type UserCre struct {
@@ -18,11 +17,7 @@ type OrderCre struct {
 }
 
 func main() {
-	dsn := "root:root@tcp(127.0.0.1:3306)/gormstudy?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("无法连接到数据库")
-	}
+	db := common.MysqlCon()
 
 	// 在数据库中创建表
 	db.AutoMigrate(&UserCre{})

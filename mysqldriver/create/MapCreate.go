@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	"gormstudy/common"
 )
 
 type UserMap struct {
@@ -15,11 +13,7 @@ type UserMap struct {
 }
 
 func main() {
-	dsn := "root:root@tcp(127.0.0.1:3306)/gormstudy?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		panic("无法连接到数据库")
-	}
+	db := common.MysqlCon()
 
 	// 自动迁移模式，将 `UserMap` 结构体映射到数据库表
 	db.AutoMigrate(&UserMap{})
