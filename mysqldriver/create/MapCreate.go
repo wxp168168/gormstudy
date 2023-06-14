@@ -9,9 +9,9 @@ import (
 
 type UserMap struct {
 	ID    int
-	Name  string
-	Email string
-	Age   int
+	Name  string `gorm:"size:30"`
+	Email string `gorm:"size:60"`
+	Age   int    `gorm:"type:tinyint(3)"`
 }
 
 func main() {
