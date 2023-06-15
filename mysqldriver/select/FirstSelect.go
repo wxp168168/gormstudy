@@ -23,7 +23,7 @@ func main() {
 	// 获取第一条记录（主键升序）
 	// SELECT * FROM user_firsts ORDER BY id LIMIT 1;
 	var user UserFirst
-	if err := db.First(&user).Error; err != nil {
+	if err := db.Debug().First(&user).Error; err != nil {
 		fmt.Println("Error:", err)
 	} else {
 		fmt.Println("First user:", user)

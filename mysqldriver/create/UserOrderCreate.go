@@ -32,5 +32,5 @@ func main() {
 	}
 
 	// 创建用户和关联的订单
-	db.Create(&user)
+	db.Debug().Create(&user)
 }
